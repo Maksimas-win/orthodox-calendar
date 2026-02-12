@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Православный календарь — Храм Рождества Христова</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --gold-light: #F4E4BA;
+            --burgundy: #722F37;
+            --burgundy-dark: #4A1C23;
+            --cream: #FDF8F0;
+            --text-dark: #2C1810;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, var(--cream) 0%, #F5EDE0 100%);
+            color: var(--text-dark);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Date Navigation */
+        .date-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .date-nav button {
+            background: var(--burgundy);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .date-nav button:hover {
+            background: var(--burgundy-dark);
+        }
+
+        .date-nav button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .today-btn {
+            background: var(--gold) !important;
+            color: var(--text-dark) !important;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--burgundy-dark) 0%, var(--burgundy) 100%);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(114, 47, 55, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '☦';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.05;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: var(--gold);
+        }
+
+        .header-date {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            color: var(--gold-light);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .header-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--gold);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 15px;
+        }
+
+        .header-subtitle {
+            color: var(--gold-light);
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Main Feast Card */
+        .feast-card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--gold);
+        }
+
+        .feast-card.main {
+            background: linear-gradient(135deg, white 0%, var(--gold-light) 100%);
+            border-left: 5px solid var(--burgundy);
+        }
+
+        .feast-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .feast-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--burgundy-dark);
+            margin-bottom: 10px;
+        }
+
+        .feast-description {
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        /* Section Headers */
+        .section-header {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--burgundy);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--gold-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-header::before {
+            content: '✦';
+            color: var(--gold);
+        }
+
+        /* Saints List */
+        .saints-list {
+            list-style: none;
+        }
+
+        .saints-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .saints-list li:last-child {
+            border-bottom: none;
+        }
+
+        .saints-list li::before {
+            content: '☦';
+            color: var(--burgundy);
+            font-size: 0.9rem;
+            margin-top: 3px;
+        }
+
+        /* Readings */
+        .reading-item {
+            background: var(--cream);
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .reading-label {
+            font-weight: 600;
+            color: var(--burgundy);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .reading-ref {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: var(--text-dark);
+        }
+
+        /* Troparia */
+        .troparion {
+            background: linear-gradient(135deg, var(--burgundy-dark) 0%, var(--burgundy) 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 16px;
+            margin-bottom: 25px;
+        }
+
+        .troparion-header {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .troparion-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        .troparion-translation {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            font-size: 0.95rem;
+            opacity: 0.9;
+            font-style: normal;
+        }
+
+        /* Info badges */
+        .info-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .badge {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .badge.no-fast {
+            background: #E8F5E9;
+            color: #2E7D32;
+        }
+
+        .badge.fast {
+            background: #FFEBEE;
+            color: #C62828;
+        }
+
+        .badge.week {
+            background: #E3F2FD;
+            color: #1565C0;
+        }
+
+        .badge.glas {
+            background: var(--gold-light);
+            color: var(--burgundy-dark);
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--burgundy);
+        }
+
+        .loading-spinner {
+            font-size: 3rem;
+            animation: spin 2s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* No data */
+        .no-data {
+            text-align: center;
+            padding: 60px 20px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .no-data-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .no-data h2 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--burgundy);
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .footer a {
+            color: var(--burgundy);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .header-title {
+                font-size: 1.8rem;
+            }
+            
+            .feast-card {
+                padding: 20px;
+            }
+            
+            .info-badges {
+                justify-content: center;
+            }
+
+            .date-nav {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Date Navigation -->
+        <div class="date-nav">
+            <button id="prevDay">← Вчера</button>
+            <button id="todayBtn" class="today-btn">Сегодня</button>
+            <button id="nextDay">Завтра →</button>
+        </div>
+
+        <!-- Content will be loaded here -->
+        <div id="calendar-content">
+            <div class="loading">
+                <div class="loading-spinner">☦</div>
+                <p>Загрузка календаря...</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>☦ Храм Рождества Христова в Букишкис</p>
+            <p><a href="https://bukhram.info">bukhram.info</a></p>
+        </footer>
+    </div>
+
+    <script>
+        // Current displayed date
+        let currentDate = new Date();
+        let calendarData = {};
+
+        // Month names in Russian
+        const monthNames = [
+            'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+            'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
+        ];
+
+        // Format date as YYYY-MM-DD
+        function formatDateKey(date) {
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        // Format date for display
+        function formatDateDisplay(date) {
+            const day = date.getDate();
+            const month = monthNames[date.getMonth()];
+            const year = date.getFullYear();
+            return `${day} ${month} ${year}`;
+        }
+
+        // Load calendar data
+        async function loadCalendarData() {
+            try {
+                const response = await fetch('calendar-data.json');
+                calendarData = await response.json();
+                renderCalendar();
+            } catch (error) {
+                console.error('Error loading calendar data:', error);
+                showNoData();
+            }
+        }
+
+        // Render calendar for current date
+        function renderCalendar() {
+            const dateKey = formatDateKey(currentDate);
+            const data = calendarData[dateKey];
+
+            if (!data) {
+                showNoData();
+                return;
+            }
+
+            const fastClass = data.fast.includes('Поста нет') ? 'no-fast' : 'fast';
+            
+            let saintsHtml = '';
+            if (data.saints && data.saints.length > 0) {
+                saintsHtml = `
+                    <article class="feast-card">
+                        <h3 class="section-header">Также память</h3>
+                        <ul class="saints-list">
+                            ${data.saints.map(saint => `<li>${saint}</li>`).join('')}
+                        </ul>
+                    </article>
+                `;
+            }
+
+            let readingsHtml = '';
+            if (data.readings) {
+                const readings = [];
+                if (data.readings.matins) {
+                    readings.push(`
+                        <div class="reading-item">
+                            <div class="reading-label">На утрене</div>
+                            <div class="reading-ref">${data.readings.matins}</div>
+                        </div>
+                    `);
+                }
+                if (data.readings.apostle) {
+                    readings.push(`
+                        <div class="reading-item">
+                            <div class="reading-label">Апостол</div>
+                            <div class="reading-ref">${data.readings.apostle}</div>
+                        </div>
+                    `);
+                }
+                if (data.readings.gospel) {
+                    readings.push(`
+                        <div class="reading-item">
+                            <div class="reading-label">Евангелие</div>
+                            <div class="reading-ref">${data.readings.gospel}</div>
+                        </div>
+                    `);
+                }
+                
+                if (readings.length > 0) {
+                    readingsHtml = `
+                        <article class="feast-card">
+                            <h3 class="section-header">Чтения Священного Писания</h3>
+                            ${readings.join('')}
+                        </article>
+                    `;
+                }
+            }
+
+            let troparionHtml = '';
+            if (data.troparion) {
+                troparionHtml = `
+                    <div class="troparion">
+                        <div class="troparion-header">
+                            🎵 Тропарь, глас ${data.troparion.glas}
+                        </div>
+                        <div class="troparion-text">
+                            ${data.troparion.text}
+                        </div>
+                        <div class="troparion-translation">
+                            <strong>Перевод:</strong> ${data.troparion.translation}
+                        </div>
+                    </div>
+                `;
+            }
+
+            let kontakionHtml = '';
+            if (data.kontakion) {
+                kontakionHtml = `
+                    <div class="troparion">
+                        <div class="troparion-header">
+                            🎵 Кондак, глас ${data.kontakion.glas}
+                        </div>
+                        <div class="troparion-text">
+                            ${data.kontakion.text}
+                        </div>
+                        <div class="troparion-translation">
+                            <strong>Перевод:</strong> ${data.kontakion.translation}
+                        </div>
+                    </div>
+                `;
+            }
+
+            const html = `
+                <!-- Header -->
+                <header class="header">
+                    <div class="header-date">${data.weekday}</div>
+                    <h1 class="header-title">${formatDateDisplay(currentDate)}</h1>
+                    <div class="header-subtitle">${data.dateOld} по старому стилю</div>
+                </header>
+
+                <!-- Main Feast -->
+                <article class="feast-card main">
+                    <div class="feast-icon">👑</div>
+                    <h2 class="feast-title">${data.mainFeast.title}</h2>
+                    <p class="feast-description">${data.mainFeast.description}</p>
+                    <div class="info-badges">
+                        <span class="badge week">${data.week}</span>
+                        <span class="badge ${fastClass}">${data.fast}</span>
+                        <span class="badge glas">Глас ${data.glas}-й</span>
+                    </div>
+                </article>
+
+                ${troparionHtml}
+                ${readingsHtml}
+                ${saintsHtml}
+                ${kontakionHtml}
+            `;
+
+            document.getElementById('calendar-content').innerHTML = html;
+        }
+
+        // Show no data message
+        function showNoData() {
+            const html = `
+                <div class="no-data">
+                    <div class="no-data-icon">📅</div>
+                    <h2>Данные на ${formatDateDisplay(currentDate)} пока не добавлены</h2>
+                    <p>Попробуйте выбрать другую дату</p>
+                </div>
+            `;
+            document.getElementById('calendar-content').innerHTML = html;
+        }
+
+        // Navigation
+        document.getElementById('prevDay').addEventListener('click', () => {
+            currentDate.setDate(currentDate.getDate() - 1);
+            renderCalendar();
+        });
+
+        document.getElementById('nextDay').addEventListener('click', () => {
+            currentDate.setDate(currentDate.getDate() + 1);
+            renderCalendar();
+        });
+
+        document.getElementById('todayBtn').addEventListener('click', () => {
+            currentDate = new Date();
+            renderCalendar();
+        });
+
+        // Initialize
+        loadCalendarData();
+    </script>
+</body>
+</html>
