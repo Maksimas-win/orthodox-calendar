@@ -14,14 +14,14 @@
     <meta property="og:title" content="Православный календарь">
     <meta property="og:description" content="Церковные праздники, посты и дни памяти святых. Отсчёт до Пасхи и расписание богослужений.">
 
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon-cross-v1.svg" type="image/svg+xml">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Vollkorn:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:wght@700&display=swap">
 
     <!-- При изменении css/js увеличьте номер ?v=, чтобы посетители сразу получили новую версию -->
-    <link rel="stylesheet" href="css/style.css?v=2">
+    <link rel="stylesheet" href="css/style.css?v=3">
     <script src="js/data.js?v=2" defer></script>
     <script src="js/church-calendar.js?v=2" defer></script>
     <script src="js/app.js?v=2" defer></script>
@@ -32,6 +32,7 @@
 
     <div class="container">
         <header class="header">
+            <svg class="header-cross" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 96" preserveAspectRatio="xMidYMid meet" fill="currentColor" aria-hidden="true" focusable="false"><path d="M32 1a6 6 0 0 1 6 6v1.1a6 6 0 1 1-1 11.6V30h7.3a6 6 0 1 1 11.6-1H57a6 6 0 0 1 0 12h-1.1a6 6 0 1 1-11.6-1H37v36.3a6 6 0 1 1 1 11.6V89a6 6 0 0 1-12 0v-1.1a6 6 0 1 1 1-11.6V40h-7.3a6 6 0 1 1-11.6 1H7a6 6 0 0 1 0-12h1.1a6 6 0 1 1 11.6 1H27V19.7a6 6 0 1 1-1-11.6V7a6 6 0 0 1 6-6Z"/></svg>
             <h1>Православный календарь</h1>
             <p class="subtitle">Церковные праздники, посты и дни памяти святых</p>
         </header>
@@ -53,7 +54,7 @@
                             <div class="stars-bg" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
                             <div class="main-cross" aria-hidden="true">
                                 <div class="cross-glow"></div>
-                                <svg class="cross-svg" viewBox="0 0 120 160" xmlns="http://www.w3.org/2000/svg">
+                                <svg class="cross-svg" viewBox="0 0 64 96" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" focusable="false">
                                     <defs>
                                         <linearGradient id="goldMain" x1="0%" y1="0%" x2="100%" y2="100%">
                                             <stop offset="0%" stop-color="#fff8dc"/>
@@ -68,28 +69,8 @@
                                             <stop offset="100%" stop-color="#8b7020"/>
                                         </linearGradient>
                                     </defs>
-                                    <!-- Трилистниковый крест -->
-                                    <g fill="url(#goldMain)" stroke="url(#goldStroke)" stroke-width="1.5">
-                                        <!-- Верхний трилистник -->
-                                        <circle cx="60" cy="12" r="10"/>
-                                        <circle cx="50" cy="18" r="8"/>
-                                        <circle cx="70" cy="18" r="8"/>
-                                        <!-- Левый трилистник -->
-                                        <circle cx="12" cy="62" r="10"/>
-                                        <circle cx="18" cy="52" r="8"/>
-                                        <circle cx="18" cy="72" r="8"/>
-                                        <!-- Правый трилистник -->
-                                        <circle cx="108" cy="62" r="10"/>
-                                        <circle cx="102" cy="52" r="8"/>
-                                        <circle cx="102" cy="72" r="8"/>
-                                        <!-- Нижний трилистник -->
-                                        <circle cx="60" cy="148" r="10"/>
-                                        <circle cx="50" cy="142" r="8"/>
-                                        <circle cx="70" cy="142" r="8"/>
-                                        <!-- Вертикальная и горизонтальная балки -->
-                                        <rect x="52" y="18" width="16" height="124"/>
-                                        <rect x="18" y="54" width="84" height="16"/>
-                                    </g>
+                                    <!-- Approved one-horizontal-bar trefoil cross; see AGENTS.md. -->
+                                    <path d="M32 1a6 6 0 0 1 6 6v1.1a6 6 0 1 1-1 11.6V30h7.3a6 6 0 1 1 11.6-1H57a6 6 0 0 1 0 12h-1.1a6 6 0 1 1-11.6-1H37v36.3a6 6 0 1 1 1 11.6V89a6 6 0 0 1-12 0v-1.1a6 6 0 1 1 1-11.6V40h-7.3a6 6 0 1 1-11.6 1H7a6 6 0 0 1 0-12h1.1a6 6 0 1 1 11.6 1H27V19.7a6 6 0 1 1-1-11.6V7a6 6 0 0 1 6-6Z" fill="url(#goldMain)" stroke="url(#goldStroke)" stroke-width="0.6"/>
                                 </svg>
                             </div>
                             <h2 class="church-title">Храм Рождества Христова</h2>
@@ -104,7 +85,7 @@
                             <div class="corner-ornament bottom-left"></div>
                             <div class="corner-ornament bottom-right"></div>
                             <div class="schedule-header">
-                                <span class="schedule-cross" aria-hidden="true">☦</span>
+                                <svg class="schedule-cross" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 96" preserveAspectRatio="xMidYMid meet" fill="currentColor" aria-hidden="true" focusable="false"><path d="M32 1a6 6 0 0 1 6 6v1.1a6 6 0 1 1-1 11.6V30h7.3a6 6 0 1 1 11.6-1H57a6 6 0 0 1 0 12h-1.1a6 6 0 1 1-11.6-1H37v36.3a6 6 0 1 1 1 11.6V89a6 6 0 0 1-12 0v-1.1a6 6 0 1 1 1-11.6V40h-7.3a6 6 0 1 1-11.6 1H7a6 6 0 0 1 0-12h1.1a6 6 0 1 1 11.6 1H27V19.7a6 6 0 1 1-1-11.6V7a6 6 0 0 1 6-6Z"/></svg>
                                 <h2>Расписание богослужений</h2>
                             </div>
                             <!-- Расписание: правьте время и названия служб здесь -->
@@ -124,7 +105,7 @@
                                     </div>
                                 </li>
                                 <li class="schedule-item">
-                                    <div class="schedule-icon-wrap" aria-hidden="true">☦</div>
+                                    <div class="schedule-icon-wrap" aria-hidden="true"><svg class="inline-cross" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 96" preserveAspectRatio="xMidYMid meet" fill="currentColor" aria-hidden="true" focusable="false"><path d="M32 1a6 6 0 0 1 6 6v1.1a6 6 0 1 1-1 11.6V30h7.3a6 6 0 1 1 11.6-1H57a6 6 0 0 1 0 12h-1.1a6 6 0 1 1-11.6-1H37v36.3a6 6 0 1 1 1 11.6V89a6 6 0 0 1-12 0v-1.1a6 6 0 1 1 1-11.6V40h-7.3a6 6 0 1 1-11.6 1H7a6 6 0 0 1 0-12h1.1a6 6 0 1 1 11.6 1H27V19.7a6 6 0 1 1-1-11.6V7a6 6 0 0 1 6-6Z"/></svg></div>
                                     <div class="schedule-info">
                                         <div class="schedule-day">Двунадесятые праздники</div>
                                         <div class="schedule-time"><span class="time-badge">8:00</span> Торжественная Литургия</div>
@@ -211,7 +192,7 @@
         </main>
 
         <footer class="footer">
-            <div class="footer-cross" aria-hidden="true">☦</div>
+            <svg class="footer-cross" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 96" preserveAspectRatio="xMidYMid meet" fill="currentColor" aria-hidden="true" focusable="false"><path d="M32 1a6 6 0 0 1 6 6v1.1a6 6 0 1 1-1 11.6V30h7.3a6 6 0 1 1 11.6-1H57a6 6 0 0 1 0 12h-1.1a6 6 0 1 1-11.6-1H37v36.3a6 6 0 1 1 1 11.6V89a6 6 0 0 1-12 0v-1.1a6 6 0 1 1 1-11.6V40h-7.3a6 6 0 1 1-11.6 1H7a6 6 0 0 1 0-12h1.1a6 6 0 1 1 11.6 1H27V19.7a6 6 0 1 1-1-11.6V7a6 6 0 0 1 6-6Z"/></svg>
             <p class="footer-text">Православный календарь для <a href="https://bukiski-hram.net" class="footer-link">храма Рождества Христова в Букишкесе</a></p>
             <p class="footer-text footer-vilnius">Молитвами святых мучеников Виленских Антония, Иоанна и Евстафия</p>
             <div class="footer-links">

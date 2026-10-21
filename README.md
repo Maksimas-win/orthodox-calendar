@@ -10,7 +10,8 @@
 
 ```
 index.html               — разметка страницы (расписание богослужений правится здесь)
-favicon.svg              — иконка сайта
+favicon-cross-v1.svg     — текущая иконка сайта (favicon.svg — совместимый прежний адрес)
+cross-v1.svg             — утверждённая форма креста для декоративных маркеров
 .htaccess                — настройки для Hostinger (на GitHub Pages не используется)
 css/style.css            — оформление
 js/data.js               — ДАННЫЕ: праздники, святые, посты (правится чаще всего)
@@ -48,7 +49,7 @@ js/app.js                — отрисовка страницы и интера
 1. hPanel → **Websites** → **Manage** → **File Manager** → папка `public_html`.
 2. **Удалите `default.php`** — это заглушка Hostinger («Viskas paruošta!»).
    (Файл `.htaccess` и так заставляет сервер открывать `index.html` первым, но заглушку лучше убрать.)
-3. Загрузите в `public_html`: `index.html`, `favicon.svg`, `.htaccess`, папки `css` и `js`.
+3. Загрузите в `public_html`: `index.html`, `favicon-cross-v1.svg`, `favicon.svg`, `cross-v1.svg`, `.htaccess`, папки `css` и `js`.
    Файлы `README.md` и `.gitignore` загружать не нужно.
 4. Проверьте, что в hPanel включён SSL (раздел **Security → SSL**).
 
